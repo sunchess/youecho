@@ -1,0 +1,31 @@
+<h1>Listing Dialogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Iterate count</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for question <- @dialogs do %>
+    <tr>
+      <td><a class="play" href="#" <%= render_attrs_question(question) |> raw %> ><i class="fas fa-play" style="font-size: 18px;"></i></a></td>
+      <%= render_question(question) |> raw %>
+      <td><%= question.iterate_count %></td>
+
+      <td>
+        <%= link "Show", to: Routes.question_path(@conn, :show, question) %>
+        <%= link "Edit", to: Routes.question_path(@conn, :edit, question) %>
+        <%= link "Delete", to: Routes.question_path(@conn, :delete, question), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Question", to: Routes.question_path(@conn, :new) %></span>
