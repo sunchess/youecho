@@ -39,7 +39,7 @@ $(document).ready(function () {
       console.log('stopped');
       setTimeout(function(){
         recognition.start();
-      }, 1000)
+      }, 100)
     })
 
     //*** start speech ***
