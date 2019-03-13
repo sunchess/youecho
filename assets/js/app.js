@@ -21,22 +21,29 @@ import "phoenix_html"
 $(document).ready(function () {
   $(".play").click(function(e){
     e.stopPropagation();
-    let say = $(this).attr("say")
-    console.log(say)
 
+    //*** speech ***
+    let say = $(this).attr("say")
     var msg = new SpeechSynthesisUtterance(say);
     msg.lang = 'en-US'
     msg.rate = 0.7
-    window.speechSynthesis.speak(msg);
 
+    //*** talk ***
     let answer = $(this).attr("answer")
     let answer_tag = $(this).parent().siblings("td.pronounce")
     console.log(answer_tag)
     let recognition = recognize(answer, answer_tag)
 
-    setTimeout(function(){
-      recognition.start();
-    }, 1000)
+    // *** end speach
+    msg.addEventListener('end', function () {
+      console.log('stopped');
+      setTimeout(function(){
+        recognition.start();
+      }, 1000)
+    })
+
+    //*** start speech ***
+    window.speechSynthesis.speak(msg);
 
   })
 });
@@ -45,10 +52,12 @@ let recognize = function(answer, answer_tag){
   window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
   let finalTranscript = '';
   let recognition = new window.SpeechRecognition();
+
   recognition.interimResults = true;
   recognition.lang = 'en-US';
   recognition.maxAlternatives = 10;
   recognition.continuous = false;
+
   recognition.onresult = (event) => {
     let interimTranscript = '';
     for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
