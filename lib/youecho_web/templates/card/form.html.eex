@@ -13,6 +13,10 @@
   <%= text_input f, :translate %>
   <%= error_tag f, :translate %>
 
+  <%= label f, :example %>
+  <%= text_input f, :example %>
+  <%= error_tag f, :example %>
+
   <div>
     <%= submit "Save" %>
   </div>

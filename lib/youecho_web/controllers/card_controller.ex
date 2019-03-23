@@ -5,7 +5,7 @@ defmodule YouechoWeb.CardController do
   alias Youecho.Cards.Card
 
   def index(conn, _params) do
-    cards = Cards.list_cards()
+    cards = Cards.list_orderd_cards()
     render(conn, "index.html", cards: cards)
   end
 

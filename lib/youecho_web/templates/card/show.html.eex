@@ -12,6 +12,10 @@
     <%= @card.translate %>
   </li>
 
+  <li>
+    <strong>Example:</strong>
+    <%= @card.example %>
+  </li>
 </ul>
 
 <span><%= link "Edit", to: Routes.card_path(@conn, :edit, @card) %></span>

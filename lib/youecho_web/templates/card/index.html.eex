@@ -1,10 +1,14 @@
-<h1>Listing Cards</h1>
+<div class="flex">
+  <h1>Listing Cards</h1><span><a class="list-play" href="#" style="color: red"><i class="fas fa-play" style="font-size: 18px;"></i></a></span>
+</div>
 
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
       <th>Translate</th>
+      <th>Example</th>
       <th>Repeat</th>
 
       <th></th>
@@ -12,9 +16,15 @@
   </thead>
   <tbody>
 <%= for card <- @cards do %>
-    <tr>
-      <td><%= card.title %></td>
-      <td><%= card.translate %></td>
+    <tr class="row-tranlate">
+      <td><a class="play" href="#" say="<%= card.title %>" answer="<%= card.example%>"><i class="fas fa-play" style="font-size: 18px;"></i></a></td>
+      <td class="title"><%= card.title %></td>
+      <td class="translate"><%= card.translate %></td>
+
+      <td class="pronounce">
+        <%= card.example %><br/>
+        <span class="speech"><span>
+      </td>
       <td><%= card.iterate_count %></td>
 
       <td>

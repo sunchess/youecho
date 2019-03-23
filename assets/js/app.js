@@ -4,6 +4,7 @@
 import css from "../css/app.css"
 import 'bootstrap';
 import $ from 'jquery';
+import 'babel-polyfill';
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -12,6 +13,8 @@ import $ from 'jquery';
 // Import dependencies
 //
 import "phoenix_html"
+import Speech from "./speech";
+import Recognizer from "./recognizer";
 
 // Import local files
 //
@@ -22,56 +25,47 @@ $(document).ready(function () {
   $(".play").click(function(e){
     e.stopPropagation();
 
-    //*** speech ***
-    let say = $(this).attr("say")
-    var msg = new SpeechSynthesisUtterance(say);
-    msg.lang = 'en-US'
-    msg.rate = 0.7
-
     //*** talk ***
     let answer = $(this).attr("answer")
-    let answer_tag = $(this).parent().siblings("td.pronounce")
-    console.log(answer_tag)
-    let recognition = recognize(answer, answer_tag)
+    let answer_tag = $(this).parent().siblings("td.pronounce").children("span.speech")
+    let recognition = new Recognizer(answer, answer_tag)
 
-    // *** end speach
-    msg.addEventListener('end', function () {
-      console.log('stopped');
-      setTimeout(function(){
-        recognition.start();
-      }, 100)
+    //*** speech ***
+    let say = $(this).attr("say")
+    let speech = new Speech(say, recognition)
+    speech.run()
+
+    return false;
+  })
+
+  $(".list-play").click(function(e){
+    e.stopPropagation();
+    let speech_rows_intermals = []
+
+    $(".row-tranlate").each( function(index){
+      let timer = setTimeout(()=>{
+        play_row(this)
+      }, index * 5000)
+
+      speech_rows_intermals.push(timer)
     })
 
-    //*** start speech ***
-    window.speechSynthesis.speak(msg);
+    return false;
+  });
 
-  })
 });
 
-let recognize = function(answer, answer_tag){
-  window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-  let finalTranscript = '';
-  let recognition = new window.SpeechRecognition();
+let sleep = function(ms) {
+ return new Promise(res => setTimeout(res, ms));
+}
 
-  recognition.interimResults = true;
-  recognition.lang = 'en-US';
-  recognition.maxAlternatives = 10;
-  recognition.continuous = false;
+let play_row = function(element){
+  var title =  $(element).children("td.title").text()
+  var translate = $(element).children("td.translate").text()
 
-  recognition.onresult = (event) => {
-    let interimTranscript = '';
-    for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
-      let transcript = event.results[i][0].transcript;
-      console.log(transcript)
-      if (event.results[i].isFinal) {
-        finalTranscript += transcript;
-      } else {
-        interimTranscript += transcript;
-      }
-    }
+  let title_speech = new Speech(title)
+  title_speech.run()
 
-    answer_tag.html(finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>')
-    //out = finalTranscript + interimTranscript
-  }
-  return recognition
+  let translate_speech = new Speech(translate, null, 'ru-RU')
+  translate_speech.run()
 }

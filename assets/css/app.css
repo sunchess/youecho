@@ -6,3 +6,15 @@
 .pronounce{
   color: green;
 }
+
+.speech{
+  color: grey;
+}
+
+.flex{
+    display: flex;
+    align-items: baseline;
+}
+.flex h1{
+  margin: 5px;
+}

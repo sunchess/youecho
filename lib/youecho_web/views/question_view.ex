@@ -3,9 +3,10 @@ defmodule YouechoWeb.QuestionView do
 
   def render_question(question) do
     if question.answer_pronounce do
-      "<td>#{question.question}</td> <td class=\"pronounce\">#{question.answer}</td>"
+      "<td>#{question.question}</td> <td class=\"pronounce\">#{question.answer}<br/><span class=\"speech\"><span></td>"
     else
-      "<td class=\"pronounce\">#{question.question}</td> <td>#{question.answer}</td>"
+      "<td class=\"pronounce\">#{question.question}<br/><span class=\"speech\"><span></td> <td>#{question.answer}</td>"
+
     end
   end
 

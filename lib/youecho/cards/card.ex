@@ -12,6 +12,7 @@ defmodule Youecho.Cards.Card do
     field :title, :string
     field :translate, :string
     field :iterate_count, :integer, default: 0
+    field :example, :string
 
     timestamps()
   end
@@ -19,7 +20,7 @@ defmodule Youecho.Cards.Card do
   @doc false
   def changeset(card, attrs) do
     card
-    |> cast(attrs, [:title, :translate])
+    |> cast(attrs, [:title, :translate, :example])
     |> validate_required([:title, :translate])
   end
 

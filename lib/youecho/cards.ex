@@ -1,4 +1,7 @@
 defmodule Youecho.Cards do
+
+  import Ecto.Query
+
   @moduledoc """
   The Cards context.
   """
@@ -19,6 +22,10 @@ defmodule Youecho.Cards do
   """
   def list_cards do
     Repo.all(Card)
+  end
+
+  def list_orderd_cards do
+   from(c in Card, order_by: c.id) |> Repo.all
   end
 
   @doc """
