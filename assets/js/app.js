@@ -21,6 +21,7 @@ import Recognizer from "./recognizer";
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
+let period = 16000
 $(document).ready(function () {
   $(".play").click(function(e){
     e.stopPropagation();
@@ -45,7 +46,7 @@ $(document).ready(function () {
     $(".row-tranlate").each( function(index){
       let timer = setTimeout(()=>{
         play_row(this)
-      }, index * 5000)
+      }, index * period)
 
       speech_rows_intermals.push(timer)
     })
@@ -60,6 +61,8 @@ let sleep = function(ms) {
 }
 
 let play_row = function(element){
+  $(element).css("background", "#f2fbff")
+
   var title =  $(element).children("td.title").text()
   var translate = $(element).children("td.translate").text()
 
