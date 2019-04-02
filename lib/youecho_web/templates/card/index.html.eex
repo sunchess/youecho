@@ -2,6 +2,9 @@
   <h1>Listing Cards</h1><span><a class="list-play" href="#" style="color: red"><i class="fas fa-play" style="font-size: 18px;"></i></a></span>
 </div>
 
+
+<span><%= link "New Card", to: Routes.card_path(@conn, :new) %></span>
+
 <table>
   <thead>
     <tr>
@@ -17,7 +20,7 @@
   <tbody>
 <%= for card <- @cards do %>
     <tr class="row-tranlate">
-      <td><a class="play" href="#" say="<%= card.title %>" answer="<%= card.example%>"><i class="fas fa-play" style="font-size: 18px;"></i></a></td>
+      <td><a class="play" href="#" card_id="<%= card.id %>" say="<%= card.title %>" answer="<%= card.example%>"><i class="fas fa-play" style="font-size: 18px;"></i></a></td>
       <td class="title"><%= card.title %></td>
       <td class="translate"><%= card.translate %></td>
 
@@ -25,7 +28,7 @@
         <%= card.example %><br/>
         <span class="speech"><span>
       </td>
-      <td><%= card.iterate_count %></td>
+      <td class="increment"><%= card.iterate_count %></td>
 
       <td>
         <%= link "Show", to: Routes.card_path(@conn, :show, card) %>
@@ -38,3 +41,7 @@
 </table>
 
 <span><%= link "New Card", to: Routes.card_path(@conn, :new) %></span>
+
+<hr/>
+
+<div style="height: 100px;"> --- </div>

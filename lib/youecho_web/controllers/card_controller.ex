@@ -19,7 +19,7 @@ defmodule YouechoWeb.CardController do
       {:ok, card} ->
         conn
         |> put_flash(:info, "Card created successfully.")
-        |> redirect(to: Routes.card_path(conn, :show, card))
+        |> redirect(to: Routes.card_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

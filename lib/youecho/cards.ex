@@ -25,7 +25,7 @@ defmodule Youecho.Cards do
   end
 
   def list_orderd_cards do
-   from(c in Card, order_by: c.id) |> Repo.all
+   from(c in Card, order_by: [desc: c.id]) |> Repo.all
   end
 
   @doc """

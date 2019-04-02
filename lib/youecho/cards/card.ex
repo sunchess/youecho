@@ -25,7 +25,12 @@ defmodule Youecho.Cards.Card do
   end
 
   def increment(id) do
-    from(c in Card, update: [inc: [iterate_count: 1]], where: c.id == ^id)
-    |> Repo.update
+    card = Repo.get(Card, id)
+    result = card.iterate_count + 1
+
+    from(c in Card, where: c.id == ^id)
+    |> Repo.update_all(set: [iterate_count: result])
+
+    result
   end
 end

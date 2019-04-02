@@ -2,7 +2,7 @@ export default class Speech {
   constructor(text, recognizer, lang){
     this.msg = new SpeechSynthesisUtterance(text);
     this.msg.lang = lang || 'en-US';
-    this.msg.rate = 0.8;
+    this.msg.rate = 0.7;
 
     this.callback = recognizer;
 
