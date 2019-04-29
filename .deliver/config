@@ -6,13 +6,16 @@ AUTO_VERSION="git-revision"
 
 BUILD_HOST="139.59.151.161"
 BUILD_USER="deploy"
-BUILD_AT="/tmp/edeliver/$APP/builds"
+BUILD_AT="/home/deploy/apps/youecho/builds"
 
 START_DEPLOY=true
 CLEAN_DEPLOY=true
 
 # prevent re-installing node modules; this defaults to "."
 GIT_CLEAN_PATHS="_build rel priv/static"
+
+# The location where built releases are going to be stored.
+RELEASE_STORE=deploy@139.59.151.161:/home/deploy/apps/youecho/edeliver_release_store/
 
 PRODUCTION_HOSTS="139.59.151.161"
 PRODUCTION_USER="deploy"

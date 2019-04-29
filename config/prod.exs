@@ -10,8 +10,8 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :youecho, YouechoWeb.Endpoint,
-  http: [:inet6, port: 4010],
-  url: [host: "localhost", port: 4010],
+  http: [port: 4030],
+  url: [host: "localhost", port: 4030],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
