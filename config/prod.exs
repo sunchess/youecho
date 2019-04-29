@@ -12,7 +12,7 @@ use Mix.Config
 config :youecho, YouechoWeb.Endpoint,
   http: [port: 4030],
   url: [host: "localhost", port: 4030],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   code_reloader: false
 
