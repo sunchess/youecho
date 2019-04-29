@@ -20,7 +20,7 @@ defmodule Youecho.MixProject do
   def application do
     [
       mod: {Youecho.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :edeliver]
     ]
   end
 
@@ -42,7 +42,10 @@ defmodule Youecho.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:basic_auth, "~> 2.2.2"},
+      {:edeliver, ">= 1.6.0"},
+      {:distillery, "~> 2.0", warn_missing: false}
     ]
   end
 

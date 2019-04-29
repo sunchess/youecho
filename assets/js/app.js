@@ -85,7 +85,7 @@ let play_row = function(element, is_final){
 
   if(is_final){
     setTimeout(()=>{
-      let _speech = new Speech("This is the last card in the list")
+      let _speech = new Speech("This is a last card in the list")
       _speech.run()
       $(play_rows).css("background", "#fff")
     }
